@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from api.authentication import SafeJWTAuthentication
 from api.permissions.permission import ROLE_ADMIN
-from api.views import UserViews, GroupViews
+from api.views import UserViews, GroupViews, CategoryViews, AdvertViews
 
 router = DefaultRouter()
 
@@ -15,6 +15,43 @@ router.register('user', authentication_classes([SafeJWTAuthentication])(
     permission_classes([AllowAny])(UserViews.UserAuthorizationView)), basename='user'),
 
 urlpatterns = [
+    # CATEGORIES
+    path("category/create_category/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.CreateCategoryView)).as_view()),
+    path("category/create_subcategory/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.CreateSubCategoryView)).as_view()),
+    path("category/delete_category_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.DeleteCategoryByIdView)).as_view()),
+    path("category/update_category_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.UpdateCategoryByIdView)).as_view()),
+    path("category/find_all_categories/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.GetCategoryView)).as_view()),
+    path("category/find_category_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.FindCategoryByIdView)).as_view()),
+
+    # ADVERT
+    path("advert/create_advert/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(AdvertViews.CreateAdvertView)).as_view()),
+    path("advert/delete_advert_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(AdvertViews.DeleteAdvertByIdView)).as_view()),
+    path("advert/update_advert_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(AdvertViews.UpdateAdvertByIdView)).as_view()),
+    path("advert/find_all_adverts/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(AdvertViews.GetAdvertView)).as_view()),
+    path("advert/find_advert_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(AdvertViews.FindCategoryByIdView)).as_view()),
+
     # USERS
     url('', include(router.urls)),
     path("user/registration/",

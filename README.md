@@ -1,2 +1,1 @@
-# RestForFlutter
-Flutter projesi için Django Rest API
+# Flutter projesi için Django Rest API

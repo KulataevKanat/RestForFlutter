@@ -4,6 +4,9 @@ makemigrate_api:
 migrate_api:
 	python manage.py migrate api --database=default
 
+all_migrate_api:
+	python manage.py migrate --database=default
+
 run:
 	python manage.py runserver
 

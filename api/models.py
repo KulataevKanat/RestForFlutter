@@ -22,3 +22,19 @@ class User(BaseModel, AbstractUser):
     def get_short_name(self):
         return self.first_name
 
+
+class Category(BaseModel):
+    name = models.CharField(max_length=30, blank=True, default='category_name')
+    main_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True,
+                                      related_name='add_main_category')
+
+
+class Advert(BaseModel):
+    advert_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='category')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=300, blank=True, default='advert_name')
+    description = models.TextField(max_length=5000, blank=True, default="advert_description")
+    price = models.IntegerField(blank=False, default='1')
+    phone = models.IntegerField(blank=False, default='+996700806860')
+    whatsapp = models.CharField(max_length=300, blank=True, default='whatsapp')

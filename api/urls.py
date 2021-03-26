@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from api.authentication import SafeJWTAuthentication
 from api.permissions.permission import ROLE_ADMIN
-from api.views import UserViews, GroupViews, CategoryViews, AdvertViews
+from api.views import UserViews, GroupViews, CategoryViews, AdvertViews, ImageViews
 
 router = DefaultRouter()
 
@@ -34,6 +34,23 @@ urlpatterns = [
     path("category/find_category_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(CategoryViews.FindCategoryByIdView)).as_view()),
+
+    # IMAGE
+    path("image/create_image/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(ImageViews.CreateImageView)).as_view()),
+    path("image/delete_image_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(ImageViews.DeleteImageByIdView)).as_view()),
+    path("image/update_image_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(ImageViews.UpdateImageByIdView)).as_view()),
+    path("image/find_all_images/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(ImageViews.GetImageView)).as_view()),
+    path("image/find_image_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(ImageViews.FindImageByIdView)).as_view()),
 
     # ADVERT
     path("advert/create_advert/",

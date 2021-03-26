@@ -2,26 +2,11 @@ from rest_framework import serializers
 
 from api.models import Advert
 from api.serializers.CategorySerializers import GetCategorySerializer
+from api.serializers.ImageSerializers import GetImageSerializer
 
 
-class CreateAdvertSerializer(serializers.ModelSerializer):
-    """Добавление объявления"""
-
-    class Meta:
-        model = Advert
-        fields = '__all__'
-
-
-class DeleteAdvertSerializer(serializers.ModelSerializer):
-    """Удаление объявления по идентификации"""
-
-    class Meta:
-        model = Advert
-        fields = '__all__'
-
-
-class UpdateAdvertSerializer(serializers.ModelSerializer):
-    """Обновление объявления по идентификации"""
+class AllAdvertSerializer(serializers.ModelSerializer):
+    """Добавление, Удаление, Изменение объявлений"""
 
     class Meta:
         model = Advert
@@ -31,6 +16,7 @@ class UpdateAdvertSerializer(serializers.ModelSerializer):
 class GetAdvertSerializer(serializers.ModelSerializer):
     """Вывод объявлений"""
     advert_category = GetCategorySerializer()
+    image = GetImageSerializer(many=True)
 
     class Meta:
         model = Advert
@@ -39,6 +25,7 @@ class GetAdvertSerializer(serializers.ModelSerializer):
             'advert_category',
             'created',
             'updated',
+            'image',
             'name',
             'description',
             'price',

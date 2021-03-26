@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
+from versatileimagefield.fields import VersatileImageField, PPOIField
 
 from RestForFlutter.models import BaseModel
 from api.provider import UserAccountManager
@@ -23,6 +24,16 @@ class User(BaseModel, AbstractUser):
         return self.first_name
 
 
+class Image(BaseModel):
+    name = models.CharField(max_length=255)
+    image = VersatileImageField(
+        'Image',
+        upload_to='images/',
+        ppoi_field='image_ppoi'
+    )
+    image_ppoi = PPOIField()
+
+
 class Category(BaseModel):
     name = models.CharField(max_length=30, blank=True, default='category_name')
     main_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True,
@@ -35,6 +46,7 @@ class Advert(BaseModel):
     updated = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=300, blank=True, default='advert_name')
     description = models.TextField(max_length=5000, blank=True, default="advert_description")
+    image = models.ManyToManyField(Image, related_name='advert_image')
     price = models.IntegerField(blank=False, default='1')
     phone = models.IntegerField(blank=False, default='+996700806860')
     whatsapp = models.CharField(max_length=300, blank=True, default='whatsapp')

@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +19,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'djoser',
+    'versatileimagefield',
     'drf_yasg',
     'django_filters',
 ]
@@ -46,6 +48,15 @@ SWAGGER_SETTINGS = {
             'in': 'HEADER.PAYLOAD.VERIFY_SIGNATURE'
         }
     }
+}
+
+VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+    'product_headshot': [
+        ('full_size', 'url'),
+        ('thumbnail', 'thumbnail__100x100'),
+        ('medium_square_crop', 'crop__400x400'),
+        ('small_square_crop', 'crop__50x50')
+    ]
 }
 
 AUTH_USER_MODEL = 'api.User'
@@ -107,7 +118,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RestForFlutter',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': '4466567693441',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
@@ -146,5 +157,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'

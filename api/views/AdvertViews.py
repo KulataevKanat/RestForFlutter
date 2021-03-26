@@ -10,21 +10,21 @@ from api.service import AdvertFilterSet
 class CreateAdvertView(generics.CreateAPIView):
     """Добавление объявления"""
 
-    serializer_class = AdvertSerializers.CreateAdvertSerializer
+    serializer_class = AdvertSerializers.AllAdvertSerializer
 
 
 class DeleteAdvertByIdView(generics.DestroyAPIView):
     """Удаление объявления по идентификации"""
 
     queryset = Advert.objects.all()
-    serializer_class = AdvertSerializers.DeleteAdvertSerializer
+    serializer_class = AdvertSerializers.AllAdvertSerializer
 
 
 class UpdateAdvertByIdView(generics.UpdateAPIView):
     """Обновление объявления по идентификации"""
 
     queryset = Advert.objects.all()
-    serializer_class = AdvertSerializers.UpdateAdvertSerializer
+    serializer_class = AdvertSerializers.AllAdvertSerializer
 
 
 class GetAdvertView(generics.ListAPIView):
@@ -32,7 +32,7 @@ class GetAdvertView(generics.ListAPIView):
 
     queryset = Advert.objects.all()
     filter_backends = [filterss.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
-    ordering_fields = ['created', 'amount']
+    ordering_fields = ['created']
     filterset_class = AdvertFilterSet
     search_fields = ['created', '^name']
     serializer_class = AdvertSerializers.GetAdvertSerializer

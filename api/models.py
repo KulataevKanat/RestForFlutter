@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
 from versatileimagefield.fields import VersatileImageField, PPOIField
-
+from django.utils.translation import gettext_lazy as _
 from RestForFlutter.models import BaseModel
 from api.provider import UserAccountManager
 
@@ -23,6 +23,10 @@ class User(BaseModel, AbstractUser):
     def get_short_name(self):
         return self.first_name
 
+    class Meta:
+        verbose_name = _('Пользоваетель')
+        verbose_name_plural = _('Пользователи')
+
 
 class Image(BaseModel):
     name = models.CharField(max_length=255)
@@ -33,11 +37,19 @@ class Image(BaseModel):
     )
     image_ppoi = PPOIField()
 
+    class Meta:
+        verbose_name = _('Картинка')
+        verbose_name_plural = _('Картинки')
+
 
 class Category(BaseModel):
     name = models.CharField(max_length=30, blank=True, default='category_name')
     main_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True,
                                       related_name='add_main_category')
+
+    class Meta:
+        verbose_name = _('Категория')
+        verbose_name_plural = _('Категории')
 
 
 class Advert(BaseModel):
@@ -50,3 +62,7 @@ class Advert(BaseModel):
     price = models.IntegerField(blank=False, default='1')
     phone = models.IntegerField(blank=False, default='+996700806860')
     whatsapp = models.CharField(max_length=300, blank=True, default='whatsapp')
+
+    class Meta:
+        verbose_name = _('Объявление')
+        verbose_name_plural = _('Объявления')

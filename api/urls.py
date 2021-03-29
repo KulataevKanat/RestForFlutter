@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from api.authentication import SafeJWTAuthentication
 from api.permissions.permission import ROLE_ADMIN
-from api.views import UserViews, GroupViews, CategoryViews, AdvertViews, ImageViews
+from api.views import UserViews, GroupViews, CategoryViews, AnnouncementViews, ImageViews
 
 router = DefaultRouter()
 
@@ -53,21 +53,21 @@ urlpatterns = [
              permission_classes([AllowAny])(ImageViews.FindImageByIdView)).as_view()),
 
     # ADVERT
-    path("advert/create_advert/",
+    path("announcement/create_announcement/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(AdvertViews.CreateAdvertView)).as_view()),
-    path("advert/delete_advert_by_id/<int:pk>/",
+             permission_classes([AllowAny])(AnnouncementViews.CreateAnnouncementView)).as_view()),
+    path("announcement/delete_announcement_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(AdvertViews.DeleteAdvertByIdView)).as_view()),
-    path("advert/update_advert_by_id/<int:pk>/",
+             permission_classes([AllowAny])(AnnouncementViews.DeleteAnnouncementByIdView)).as_view()),
+    path("announcement/update_announcement_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(AdvertViews.UpdateAdvertByIdView)).as_view()),
-    path("advert/find_all_adverts/",
+             permission_classes([AllowAny])(AnnouncementViews.UpdateAnnouncementByIdView)).as_view()),
+    path("announcement/find_all_announcements/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(AdvertViews.GetAdvertView)).as_view()),
-    path("advert/find_advert_by_id/<int:pk>/",
+             permission_classes([AllowAny])(AnnouncementViews.GetAnnouncementView)).as_view()),
+    path("announcement/find_announcement_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(AdvertViews.FindCategoryByIdView)).as_view()),
+             permission_classes([AllowAny])(AnnouncementViews.FindAnnouncementByIdView)).as_view()),
 
     # USERS
     url('', include(router.urls)),

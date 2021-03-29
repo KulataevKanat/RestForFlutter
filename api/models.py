@@ -52,8 +52,8 @@ class Category(BaseModel):
         verbose_name_plural = _('Категории')
 
 
-class Advert(BaseModel):
-    advert_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='category')
+class Announcement(BaseModel):
+    announcement_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='category')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=300, blank=True, default='advert_name')

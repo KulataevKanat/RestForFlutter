@@ -34,8 +34,7 @@ class ROLE_ADMIN(permissions.BasePermission):
         return request.user and has_group_permission
 
     def has_object_permission(self, request, view, obj):
-        has_group_permission = _has_group_permission(request.user, self.required_groups)
-        return request.user and has_group_permission
+        return obj.user.__eq__(request.user)
 
 
 class ROLE_USER(permissions.BasePermission):
@@ -46,8 +45,7 @@ class ROLE_USER(permissions.BasePermission):
         return request.user and has_group_permission
 
     def has_object_permission(self, request, view, obj):
-        has_group_permission = _has_group_permission(request.user, self.required_groups)
-        return request.user and has_group_permission
+        return obj.user.__eq__(request.user)
 
 
 class AllowAnyGroups(permissions.BasePermission):
@@ -56,3 +54,15 @@ class AllowAnyGroups(permissions.BasePermission):
     def has_permission(self, request, view):
         has_group_permission = _has_group_permission(request.user, self.required_groups)
         return request.user and has_group_permission
+
+    def has_object_permission(self, request, view, obj):
+        return obj.user.__eq__(request.user)
+
+
+class UserPermissionsObj(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_staff:
+            return True
+
+        return request.user.__eq__(obj)

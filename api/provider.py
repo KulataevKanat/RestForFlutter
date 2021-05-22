@@ -25,7 +25,7 @@ def generate_refresh_token(user):
         'user_id': user.id,
         'username': user.username,
         'role': user.groups.name,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7),
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
         'iat': datetime.datetime.utcnow()
     }
 

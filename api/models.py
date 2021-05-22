@@ -1,12 +1,14 @@
 from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
+from django.db.models import Count
 from versatileimagefield.fields import VersatileImageField, PPOIField
 from django.utils.translation import gettext_lazy as _
 from RestForFlutter.models import BaseModel
-from api.provider import UserAccountManager
+from api.managers import UserAccountManager
 
 
 class User(BaseModel, AbstractUser):
+    id = models.AutoField(primary_key=True)
     groups = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, default=1)
     email = models.EmailField(max_length=50, unique=True)
 
@@ -29,6 +31,7 @@ class User(BaseModel, AbstractUser):
 
 
 class Image(BaseModel):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     image = VersatileImageField(
         'Image',
@@ -43,9 +46,16 @@ class Image(BaseModel):
 
 
 class Category(BaseModel):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30, blank=True, default='category_name')
     main_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True,
                                       related_name='add_main_category')
+
+    def sub_categories(self):
+        return self.add_main_category.all().values('id', 'name').annotate(products_quantity=Count('category'))
+
+    def products_linked(self):
+        return self.category.all().count()
 
     class Meta:
         verbose_name = _('Категория')
@@ -53,6 +63,7 @@ class Category(BaseModel):
 
 
 class Announcement(BaseModel):
+    id = models.AutoField(primary_key=True)
     announcement_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='category')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

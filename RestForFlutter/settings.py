@@ -38,9 +38,14 @@ REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%d-%m-%Y %H:%M:%S",
 
+    'COERCE_DECIMAL_TO_STRING': False,
+
 }
 
 SWAGGER_SETTINGS = {
+    'DOC_EXPANSION': "none",
+    'OPERATIONS_SORTER': "method",
+    'PERSIST_AUTH': True,  # for testing
     'SECURITY_DEFINITIONS': {
         'Bearer': {
             'type': 'apiKey',
@@ -90,7 +95,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'RestForFlutter.custommiddleware.LoggedInUserMiddleware',
 ]
 
 ROOT_URLCONF = 'RestForFlutter.urls'

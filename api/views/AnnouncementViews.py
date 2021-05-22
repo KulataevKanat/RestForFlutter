@@ -4,7 +4,7 @@ from api.models import Announcement
 from api.serializers import AnnouncementSerializers
 from django_filters import rest_framework as filterss
 
-from api.service import AnnouncementFilterSet
+from api.repository import AnnouncementFilterSet
 
 
 class CreateAnnouncementView(generics.CreateAPIView):

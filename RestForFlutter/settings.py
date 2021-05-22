@@ -7,9 +7,8 @@ db_from_env = dj_database_url.config()
 
 SECRET_KEY = 'y0s(qydzc2o(j^ah6$qa!9e#xj2hc5i7&upw16kk-0j3#5a7mh'
 
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+DEBUG = False
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -131,7 +130,7 @@ DATABASES = {
         'USER': 'gdspicsbmsywmz',
         'PASSWORD': '559dff23a4a8bb9f3b153f925160ceebcc16a6bd54419236ac4354cd8ba4811e',
         'HOST': 'ec2-54-74-35-87.eu-west-1.compute.amazonaws.com',
-        'PORT': 5432,
+        'PORT': '5432',
 
         'applications': [
             'api',  # все модели в api

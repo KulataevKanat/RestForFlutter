@@ -26,7 +26,7 @@ class User(BaseModel, AbstractUser):
         return self.first_name
 
     class Meta:
-        verbose_name = _('Пользоваетель')
+        verbose_name = _('Пользователь')
         verbose_name_plural = _('Пользователи')
 
 

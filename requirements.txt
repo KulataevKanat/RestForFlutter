@@ -1,4 +1,4 @@
-asgiref==3.3.1
+asgiref==3.3.4
 bcrypt==3.2.0
 certifi==2020.12.5
 cffi==1.14.5
@@ -7,14 +7,13 @@ coreapi==2.3.3
 coreschema==0.0.4
 cryptography==3.4.6
 defusedxml==0.7.1
-Django==3.1.5
+Django==3.2.3
 django-dbrouter==0.1.1
 django-filter==2.4.0
 django-templated-mail==1.1.1
 django-utils-six==2.0
 django-versatileimagefield==2.0
 djangorestframework==3.12.2
-djangorestframework-simplejwt==4.6.0
 djoser==2.1.0
 drf-nested-routers==0.92.5
 drf-rw-serializers==1.0.4
@@ -31,7 +30,7 @@ packaging==20.9
 Pillow==8.1.2
 psycopg2==2.8.6
 pycparser==2.20
-PyJWT==2.0.1
+PyJWT==1.7.1
 pyparsing==2.4.7
 python-magic==0.4.22
 python-magic-bin==0.4.14
@@ -43,7 +42,7 @@ ruamel.yaml==0.16.13
 ruamel.yaml.clib==0.2.2
 six==1.15.0
 social-auth-app-django==4.0.0
-social-auth-core==4.1.0
+social-auth-core==4.0.2
 sqlparse==0.4.1
 uritemplate==3.0.1
 urllib3==1.26.4

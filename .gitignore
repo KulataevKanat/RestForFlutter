@@ -131,8 +131,5 @@ dmypy.json
 # IntelliJ project files
 .idea
 
-# api migrations
-api/migrations
-
 # api media
 media

@@ -1,18 +1,10 @@
-from django.conf.urls import url
-from django.urls import path, include
+from django.urls import path
 from rest_framework.decorators import permission_classes, authentication_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.routers import DefaultRouter
+from rest_framework.permissions import AllowAny
 
 from api.authentication import SafeJWTAuthentication
-from api.permissions.permission import ROLE_ADMIN
+from api.permissions.permission import ROLE_ADMIN, UserPermissionsObj
 from api.views import UserViews, GroupViews, CategoryViews, AnnouncementViews, ImageViews
-
-router = DefaultRouter()
-
-# USERS ROUTER
-router.register('user', authentication_classes([SafeJWTAuthentication])(
-    permission_classes([AllowAny])(UserViews.UserAuthorizationView)), basename='user'),
 
 urlpatterns = [
     # CATEGORIES
@@ -52,7 +44,7 @@ urlpatterns = [
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(ImageViews.FindImageByIdView)).as_view()),
 
-    # ADVERT
+    # ANNOUNCEMENT
     path("announcement/create_announcement/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(AnnouncementViews.CreateAnnouncementView)).as_view()),
@@ -70,16 +62,27 @@ urlpatterns = [
              permission_classes([AllowAny])(AnnouncementViews.FindAnnouncementByIdView)).as_view()),
 
     # USERS
-    url('', include(router.urls)),
+    path("user/access_token/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(UserViews.AccessToken)).as_view()),
+    path("user/refresh_token/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(UserViews.RefreshToken)).as_view()),
     path("user/registration/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(UserViews.UserRegistrationView)).as_view()),
+    path("user/delete_user_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(UserViews.DeleteUserByIdView)).as_view()),
     path("user/delete_all_users/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(UserViews.DeleteAllUserView)).as_view()),
+             permission_classes([AllowAny])(UserViews.DeleteAllUsersView)).as_view()),
+    path("user/update_user_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([UserPermissionsObj])(UserViews.UpdateUserView)).as_view()),
     path("user/find_all_users/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(UserViews.GetUserView)).as_view()),
+             permission_classes([ROLE_ADMIN | AllowAny])(UserViews.GetUserView)).as_view()),
     path("user/find_user_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(UserViews.FindUserByIdView)).as_view()),

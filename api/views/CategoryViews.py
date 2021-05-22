@@ -47,7 +47,7 @@ class UpdateCategoryByIdView(generics.UpdateAPIView):
 class GetCategoryView(generics.ListAPIView):
     """Вывод категорий"""
 
-    queryset = Category.objects.all()
+    queryset = Category.objects.filter(main_category=None)
     serializer_class = CategorySerializers.GetCategorySerializer
 
 

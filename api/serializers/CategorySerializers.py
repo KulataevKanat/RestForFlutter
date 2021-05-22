@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from api.models import Category
-from api.serializers.SpareSerializers import CategorySerializer
 
 
 class CreateCategorySerializer(serializers.ModelSerializer):
@@ -9,7 +8,9 @@ class CreateCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        exclude = ['main_category', ]
+        exclude = [
+            'main_category',
+        ]
 
 
 class CreateSubCategorySerializer(serializers.ModelSerializer):
@@ -17,7 +18,10 @@ class CreateSubCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['main_category', 'name']
+        fields = [
+            'main_category',
+            'name'
+        ]
 
 
 class DeleteCategorySerializer(serializers.ModelSerializer):
@@ -30,7 +34,6 @@ class DeleteCategorySerializer(serializers.ModelSerializer):
 
 class UpdateCategorySerializer(serializers.ModelSerializer):
     """Обновление категории по идентификации"""
-    main_category = CategorySerializer()
 
     class Meta:
         model = Category
@@ -39,12 +42,12 @@ class UpdateCategorySerializer(serializers.ModelSerializer):
 
 class GetCategorySerializer(serializers.ModelSerializer):
     """Вывод категорий"""
-    main_category = CategorySerializer()
 
     class Meta:
         model = Category
         fields = [
             'id',
             'name',
-            'main_category',
+            'sub_categories',
+            'products_linked',
         ]

@@ -1,13 +1,15 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+db_from_env = dj_database_url.config()
 
 SECRET_KEY = 'y0s(qydzc2o(j^ah6$qa!9e#xj2hc5i7&upw16kk-0j3#5a7mh'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -22,6 +24,7 @@ INSTALLED_APPS = [
     'versatileimagefield',
     'drf_yasg',
     'django_filters',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -68,6 +71,8 @@ AUTH_USER_MODEL = 'api.User'
 
 REFRESH_TOKEN_SECRET = 'qwertyuiop[];lkjhhgfdsaZXCVBNM,./'
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptPasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -95,6 +100,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'RestForFlutter.urls'
@@ -119,6 +126,20 @@ WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'deio2u40vbj08k',
+        'USER': 'tnnumwuuzuynsd',
+        'PASSWORD': '21c9963d1f4f27ba3d9ed05a2c5ddf78bf6d9d1a9ddfe7c9e19a27615d3e6d6e',
+        'HOST': 'ec2-18-214-140-149.compute-1.amazonaws.com',
+        'PORT': 5432,
+
+        'applications': [
+            'api',  # все модели в api
+        ],
+
+    },
+
+    'local_db': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RestForFlutter',
         'USER': 'postgres',
@@ -165,5 +186,7 @@ USE_TZ = False
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'

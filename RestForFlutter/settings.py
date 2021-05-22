@@ -127,10 +127,10 @@ WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deio2u40vbj08k',
-        'USER': 'tnnumwuuzuynsd',
-        'PASSWORD': '21c9963d1f4f27ba3d9ed05a2c5ddf78bf6d9d1a9ddfe7c9e19a27615d3e6d6e',
-        'HOST': 'ec2-18-214-140-149.compute-1.amazonaws.com',
+        'NAME': 'd6cii34akjintj',
+        'USER': 'qggvyvvjewrxvd',
+        'PASSWORD': '56c880ede36a99f1fc06e38622b7a00a57a5b7f4159d0a13978ba8f1ea9d5983',
+        'HOST': 'ec2-54-155-87-214.eu-west-1.compute.amazonaws.com',
         'PORT': 5432,
 
         'applications': [
@@ -139,19 +139,19 @@ DATABASES = {
 
     },
 
-    'local_db': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'RestForFlutter',
-        'USER': 'postgres',
-        'PASSWORD': '4466567693441',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-
-        'applications': [
-            'api',  # все модели в api
-        ],
-
-    },
+    # 'local_db': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'RestForFlutter',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '4466567693441',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432',
+    #
+    #     'applications': [
+    #         'api',  # все модели в api
+    #     ],
+    #
+    # },
 
 }
 

@@ -13,14 +13,6 @@ class CreateAnnouncementSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DeleteAnnouncementSerializer(serializers.ModelSerializer):
-    """Удаление объявления по идентификации"""
-
-    class Meta:
-        model = Announcement
-        fields = '__all__'
-
-
 class UpdateAnnouncementSerializer(serializers.ModelSerializer):
     """Обновление объявления по идентификации"""
 

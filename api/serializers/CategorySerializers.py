@@ -24,14 +24,6 @@ class CreateSubCategorySerializer(serializers.ModelSerializer):
         ]
 
 
-class DeleteCategorySerializer(serializers.ModelSerializer):
-    """Удаление категории по идентификации"""
-
-    class Meta:
-        model = Category
-        fields = '__all__'
-
-
 class UpdateCategorySerializer(serializers.ModelSerializer):
     """Обновление категории по идентификации"""
 

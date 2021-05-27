@@ -19,7 +19,7 @@ class AllPublicitySerializer(serializers.ModelSerializer):
 class GetPublicitySerializer(serializers.ModelSerializer):
     """Вывод реклам"""
 
-    image = GetImageSerializer(many=True)
+    # image = GetImageSerializer(many=True)
 
     class Meta:
         model = Publicity

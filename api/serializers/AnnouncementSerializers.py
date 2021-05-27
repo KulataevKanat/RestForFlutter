@@ -23,8 +23,9 @@ class UpdateAnnouncementSerializer(serializers.ModelSerializer):
 
 class GetAnnouncementSerializer(serializers.ModelSerializer):
     """Вывод объявлений"""
+
     announcement_category = GetCategorySerializer()
-    image = GetImageSerializer(many=True)
+    # image = GetImageSerializer(many=True)
 
     class Meta:
         model = Announcement

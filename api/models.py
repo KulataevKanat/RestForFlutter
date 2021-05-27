@@ -1,8 +1,8 @@
 from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
 from django.db.models import Count
-from versatileimagefield.fields import VersatileImageField, PPOIField
 from django.utils.translation import gettext_lazy as _
+from versatileimagefield.fields import VersatileImageField, PPOIField
 from RestForFlutter.models import BaseModel
 from api.managers import UserAccountManager
 
@@ -71,9 +71,21 @@ class Announcement(BaseModel):
     description = models.TextField(max_length=5000, blank=True, default="advert_description")
     image = models.ManyToManyField(Image, related_name='advert_image')
     price = models.IntegerField(blank=False, default='1')
-    phone = models.IntegerField(blank=False, default='+996700806860')
+    phone = models.CharField(max_length=50, blank=False, default='+996700806860')
     whatsapp = models.CharField(max_length=300, blank=True, default='whatsapp')
 
     class Meta:
         verbose_name = _('Объявление')
         verbose_name_plural = _('Объявления')
+
+
+class Publicity(BaseModel):
+    id = models.AutoField(primary_key=True)
+    image = models.ManyToManyField(Image, related_name='publicity_image')
+    link = models.URLField(max_length=1000, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Реклама')
+        verbose_name_plural = _('Рекламы')

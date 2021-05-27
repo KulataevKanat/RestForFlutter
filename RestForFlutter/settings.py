@@ -7,8 +7,8 @@ db_from_env = dj_database_url.config()
 
 SECRET_KEY = 'y0s(qydzc2o(j^ah6$qa!9e#xj2hc5i7&upw16kk-0j3#5a7mh'
 
-DEBUG = False
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
+DEBUG = True
+# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -100,7 +100,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    # 'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'RestForFlutter.urls'
@@ -124,25 +124,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'db4ca416gnastd',
+    #     'USER': 'puuomhgbnidlzn',
+    #     'PASSWORD': 'b313dbb946eec921bab1a96c6287dc2eb58dee5c3d9d13db3d5f3a7b787d4aed',
+    #     'HOST': 'ec2-54-78-36-245.eu-west-1.compute.amazonaws.com',
+    #     'PORT': '5432',
+    #
+    #     'applications': [
+    #         'api',  # все модели в api
+    #     ],
+    #
+    # },
+
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db4ca416gnastd',
-        'USER': 'puuomhgbnidlzn',
-        'PASSWORD': 'b313dbb946eec921bab1a96c6287dc2eb58dee5c3d9d13db3d5f3a7b787d4aed',
-        'HOST': 'ec2-54-78-36-245.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
-
-        'applications': [
-            'api',  # все модели в api
-        ],
-
-    },
-
-    'local_db': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RestForFlutter',
         'USER': 'postgres',
-        'PASSWORD': '4466567693441',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
@@ -153,8 +153,6 @@ DATABASES = {
     },
 
 }
-
-DATABASE_ROUTERS = ['dbrouter.DbByAppRouter']
 
 AUTH_PASSWORD_VALIDATORS = [
     {

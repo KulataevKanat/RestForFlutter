@@ -4,7 +4,7 @@ from api.models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    """Сериализатор для вывода всех данных по категории"""
+    """Сериализатор для вывода всех данных у категории"""
 
     class Meta:
         model = Category

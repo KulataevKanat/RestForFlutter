@@ -14,7 +14,6 @@ class DeleteGroupByIdView(generics.DestroyAPIView):
     """Удаление группы по идентификации"""
 
     queryset = Group.objects.all()
-    serializer_class = GroupSerializers.AllGroupSerializer
 
 
 class UpdateGroupByIdView(generics.UpdateAPIView):

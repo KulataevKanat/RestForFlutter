@@ -14,7 +14,6 @@ class DeleteImageByIdView(generics.DestroyAPIView):
     """Удаление изображений по идентификации"""
 
     queryset = Image.objects.all()
-    serializer_class = ImageSerializers.AllImageSerializer
 
 
 class UpdateImageByIdView(generics.UpdateAPIView):

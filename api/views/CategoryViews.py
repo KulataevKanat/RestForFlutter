@@ -22,7 +22,6 @@ class DeleteCategoryByIdView(generics.DestroyAPIView):
     """Удаление категории по идентификации"""
 
     queryset = Category.objects.all()
-    serializer_class = CategorySerializers.DeleteCategorySerializer
 
     def get_object(self):
         try:

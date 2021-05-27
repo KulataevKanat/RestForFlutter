@@ -17,7 +17,6 @@ class DeleteAnnouncementByIdView(generics.DestroyAPIView):
     """Удаление объявления по идентификации"""
 
     queryset = Announcement.objects.all()
-    serializer_class = AnnouncementSerializers.DeleteAnnouncementSerializer
 
 
 class UpdateAnnouncementByIdView(generics.UpdateAPIView):

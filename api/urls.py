@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny
 
 from api.authentication import SafeJWTAuthentication
 from api.permissions.permission import ROLE_ADMIN, UserPermissionsObj
-from api.views import UserViews, GroupViews, CategoryViews, AnnouncementViews, ImageViews
+from api.views import UserViews, GroupViews, CategoryViews, AnnouncementViews, ImageViews, PublicityViews
 
 urlpatterns = [
     # CATEGORIES
@@ -60,6 +60,23 @@ urlpatterns = [
     path("announcement/find_announcement_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(AnnouncementViews.FindAnnouncementByIdView)).as_view()),
+
+    # PUBLICITY
+    path("publicity/create_publicity/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(PublicityViews.CreatePublicityView)).as_view()),
+    path("publicity/delete_publicity_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(PublicityViews.DeletePublicityByIdView)).as_view()),
+    path("publicity/update_publicity_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(PublicityViews.UpdatePublicityByIdView)).as_view()),
+    path("publicity/find_all_publicity/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(PublicityViews.GetPublicityView)).as_view()),
+    path("publicity/find_publicity_by_id/<int:pk>/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(PublicityViews.FindPublicityByIdView)).as_view()),
 
     # USERS
     path("user/access_token/",

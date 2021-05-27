@@ -5,7 +5,7 @@ from versatileimagefield.serializers import VersatileImageFieldSerializer
 
 
 class AllImageSerializer(serializers.ModelSerializer):
-    """Добавление, Удаление, Обновление изображений"""
+    """Добавление, Обновление изображений"""
 
     class Meta:
         model = Image
@@ -21,8 +21,8 @@ class GetImageSerializer(serializers.ModelSerializer):
 
     image = VersatileImageFieldSerializer(
         # sizes=[
-        #     ('full_size', 'url'),
-        #     ('thumbnail', 'thumbnail__100x100'),
+        # ('full_size', 'url'),
+        # ('thumbnail', 'thumbnail__100x100'),
         # ]
         sizes='product_headshot'
     )

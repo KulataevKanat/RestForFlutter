@@ -44,6 +44,9 @@ class Image(BaseModel):
         verbose_name = _('Картинка')
         verbose_name_plural = _('Картинки')
 
+    def __str__(self):
+        return self.name
+
 
 class Category(BaseModel):
     id = models.AutoField(primary_key=True)

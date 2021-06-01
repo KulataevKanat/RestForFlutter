@@ -1,14 +1,12 @@
 import os
 from pathlib import Path
-import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-db_from_env = dj_database_url.config()
 
 SECRET_KEY = 'y0s(qydzc2o(j^ah6$qa!9e#xj2hc5i7&upw16kk-0j3#5a7mh'
 
 DEBUG = True
-# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -19,11 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'djoser',
     'versatileimagefield',
     'drf_yasg',
     'django_filters',
-    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -58,7 +54,7 @@ SWAGGER_SETTINGS = {
 }
 
 VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-    'product_headshot': [
+    'image_headshot': [
         ('full_size', 'url'),
         ('thumbnail', 'thumbnail__100x100'),
         ('medium_square_crop', 'crop__400x400'),
@@ -69,8 +65,6 @@ VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
 AUTH_USER_MODEL = 'api.User'
 
 REFRESH_TOKEN_SECRET = 'qwertyuiop[];lkjhhgfdsaZXCVBNM,./'
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptPasswordHasher',
@@ -99,8 +93,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'RestForFlutter.urls'
@@ -124,25 +116,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'db4ca416gnastd',
-    #     'USER': 'puuomhgbnidlzn',
-    #     'PASSWORD': 'b313dbb946eec921bab1a96c6287dc2eb58dee5c3d9d13db3d5f3a7b787d4aed',
-    #     'HOST': 'ec2-54-78-36-245.eu-west-1.compute.amazonaws.com',
-    #     'PORT': '5432',
-    #
-    #     'applications': [
-    #         'api',  # все модели в api
-    #     ],
-    #
-    # },
-
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RestForFlutter',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': '4466567693441',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
@@ -169,8 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru-RU'
-# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Bishkek'
 
@@ -183,7 +160,5 @@ USE_TZ = False
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'

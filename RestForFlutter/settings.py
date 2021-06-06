@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'versatileimagefield',
     'drf_yasg',
     'django_filters',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -39,6 +40,8 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
 
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 SWAGGER_SETTINGS = {
     'DOC_EXPANSION': "none",
@@ -93,6 +96,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'RestForFlutter.urls'

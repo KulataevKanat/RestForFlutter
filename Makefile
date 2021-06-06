@@ -17,4 +17,4 @@ install:
 	pip install -r win_requirements.txt
 
 freeze:
-	pip freeze > requirements.txt
+	pip freeze > win_requirements.txt

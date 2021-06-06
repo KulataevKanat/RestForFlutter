@@ -120,7 +120,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RestForFlutter',
         'USER': 'postgres',
-        'PASSWORD': '4466567693441',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
@@ -160,5 +160,7 @@ USE_TZ = False
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'

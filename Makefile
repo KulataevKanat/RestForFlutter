@@ -14,7 +14,7 @@ createsuperuser:
 	python manage.py createsuperuser
 
 install:
-	pip install -r requirements.txt
+	pip install -r win_requirements.txt
 
 freeze:
 	pip freeze > requirements.txt

@@ -32,7 +32,7 @@ psycopg2==2.8.6
 pycparser==2.20
 PyJWT==1.7.1
 pyparsing==2.4.7
-python-magic==0.4.23
+python-magic==0.4.24
 django-cors-headers==3.7.0
 gunicorn==20.1.0
 whitenoise==5.2.0

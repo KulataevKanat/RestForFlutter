@@ -133,22 +133,7 @@ DATABASES = {
         'applications': [
             'api',  # все модели в api
         ],
-    #
     },
-    #
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'RestForFlutter',
-    #     'USER': 'postgres',
-    #     'PASSWORD': '4466567693441',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '5432',
-    #
-    #     'applications': [
-    #         'api',  # все модели в api
-    #     ],
-    #
-    # },
 
 }
 

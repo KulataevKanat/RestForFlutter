@@ -6,6 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'y0s(qydzc2o(j^ah6$qa!9e#xj2hc5i7&upw16kk-0j3#5a7mh'
 
 DEBUG = True
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
 
 INSTALLED_APPS = [
@@ -123,17 +124,31 @@ WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'RestForFlutter',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'NAME': 'dekstbl7rk8r5v',
+        'USER': 'ghzsvpqtubyshe',
+        'PASSWORD': 'bec61b402f12c993472defd58fcc1b9891f691e99ea1e1d2c84c71d9d29c6569',
+        'HOST': 'ec2-63-34-97-163.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
 
         'applications': [
             'api',  # все модели в api
         ],
-
+    #
     },
+    #
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'RestForFlutter',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '4466567693441',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432',
+    #
+    #     'applications': [
+    #         'api',  # все модели в api
+    #     ],
+    #
+    # },
 
 }
 

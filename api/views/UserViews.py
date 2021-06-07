@@ -4,9 +4,10 @@ from django.http import Http404
 from rest_framework import exceptions, generics, status
 from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password as encode
-
+from django.contrib.auth.hashers import check_password as check
 from RestForFlutter.advice import USER_DETAIL, USER_NOT_FOUND, WRONG_PASSWORD, ACCESS_TOKEN_DETAIL, USER_BLOCKED, \
-    REFRESH_TOKEN_EXPIRED, AUTH_CREDENTIALS
+    REFRESH_TOKEN_EXPIRED, AUTH_CREDENTIALS, DATA_DETAIL, WRONG_OLD_PASSWORD, WRONG_ACTIVE_OLD_PASSWORD
+from api import service
 from api.models import User as Users
 from RestForFlutter import settings
 from api.provider import generate_access_token, generate_refresh_token
@@ -113,17 +114,34 @@ class DeleteAllUsersView(generics.DestroyAPIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class UpdateUserView(generics.UpdateAPIView):
+class UpdateUserView(service.PartialUpdateServiceView):
     """Изменение пользователя по идентификации"""
 
     queryset = Users.objects.all()
-    serializer_class = UserSerializers.UpdateUserSerializer
+    serializer_class = UserSerializers.UpdateRequestUserSerializer
 
-    def perform_update(self, serializer):
-        if "password" in serializer.validated_data:
-            serializer.save(password=encode(serializer.validated_data.__getitem__('password')))
-        else:
-            serializer.save()
+    def patch(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', True)
+        instance = self.get_object()
+        serializer = UserSerializers.UpdateResponseUserSerializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid(raise_exception=True):
+            try:
+                if "password" in request.data:
+                    if check(request.data["old_password"], self.request.user.password):
+                        serializer.save(password=encode(request.data['password']))
+                    else:
+                        return Response({DATA_DETAIL: WRONG_OLD_PASSWORD})
+                else:
+                    self.perform_update(serializer)
+            except KeyError:
+                return Response({DATA_DETAIL: WRONG_ACTIVE_OLD_PASSWORD})
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    def perform_update(self, serializer, *args, **kwargs):
+        serializer.save()
 
 
 class GetUserView(generics.ListAPIView):

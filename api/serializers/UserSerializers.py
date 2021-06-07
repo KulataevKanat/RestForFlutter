@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from api.models import User
+from api.service import WritableSerializerMethodField
 
 
 class GetUserSerializer(serializers.ModelSerializer):
@@ -33,8 +34,30 @@ class AuthSerializer(serializers.ModelSerializer):
         ]
 
 
-class UpdateUserSerializer(serializers.ModelSerializer):
-    """Изменение пользователя"""
+class UpdateRequestUserSerializer(serializers.ModelSerializer):
+    """Изменение пользователя по идентификации"""
+
+    old_password = WritableSerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'old_password',
+            'password',
+            'first_name',
+            'last_name',
+            'groups',
+            'is_active',
+        ]
+
+    def get_old_password(self, password):
+        return password.__str__()
+
+
+class UpdateResponseUserSerializer(serializers.ModelSerializer):
+    """Вывод измененного пользователя по идентификации"""
 
     class Meta:
         model = User
@@ -60,7 +83,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
             'email',
             'password',
             'first_name',
-            'last_name'
+            'last_name',
+            'groups',
+            'is_active',
         ]
         read_only_fields = [
             'is_active',

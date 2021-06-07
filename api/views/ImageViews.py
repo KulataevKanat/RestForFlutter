@@ -9,7 +9,7 @@ class CreateImageView(generics.CreateAPIView):
     """Добавление изображений"""
 
     serializer_class = ImageSerializers.AllImageSerializer
-    parser_classes = (FormParser, MultiPartParser)
+    # parser_classes = (FormParser, MultiPartParser)
 
 
 class DeleteImageByIdView(generics.DestroyAPIView):
@@ -23,7 +23,7 @@ class UpdateImageByIdView(generics.UpdateAPIView):
 
     queryset = Image.objects.all()
     serializer_class = ImageSerializers.AllImageSerializer
-    parser_classes = (FormParser, MultiPartParser)
+    # parser_classes = (FormParser, MultiPartParser)
 
 
 class GetImageView(generics.ListAPIView):

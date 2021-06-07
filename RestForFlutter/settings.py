@@ -124,10 +124,10 @@ WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'RestForFlutter',  # dekstbl7rk8r5v,
-        'USER': 'postgres',  # ghzsvpqtubyshe,
-        'PASSWORD': 'password',  # bec61b402f12c993472defd58fcc1b9891f691e99ea1e1d2c84c71d9d29c6569,
-        'HOST': '127.0.0.1',  # ec2-63-34-97-163.eu-west-1.compute.amazonaws.com,
+        'NAME': 'dekstbl7rk8r5v',  # dekstbl7rk8r5v,
+        'USER': 'ghzsvpqtubyshe',  # ghzsvpqtubyshe,
+        'PASSWORD': 'bec61b402f12c993472defd58fcc1b9891f691e99ea1e1d2c84c71d9d29c6569',  # bec61b402f12c993472defd58fcc1b9891f691e99ea1e1d2c84c71d9d29c6569,
+        'HOST': 'ec2-63-34-97-163.eu-west-1.compute.amazonaws.com',  # ec2-63-34-97-163.eu-west-1.compute.amazonaws.com,
         'PORT': '5432',
 
         'applications': [

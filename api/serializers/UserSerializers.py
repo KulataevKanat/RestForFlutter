@@ -88,5 +88,28 @@ class RegistrationSerializer(serializers.ModelSerializer):
             'is_active',
         ]
         read_only_fields = [
+            'id',
             'is_active',
         ]
+
+
+class CreateSuperUserSerializer(serializers.ModelSerializer):
+    """Добавление супер пользователя"""
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'password',
+            'groups',
+        ]
+
+    def create(self, validated_data):
+        superuser = User.objects._create_superuser(username=validated_data.__getitem__('username'),
+                                                   groups=validated_data.__getitem__('groups'),
+                                                   email=validated_data.__getitem__('email'),
+                                                   password=validated_data.__getitem__('password'),
+                                                   )
+
+        return superuser

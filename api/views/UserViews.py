@@ -92,6 +92,12 @@ class UserRegistrationView(generics.CreateAPIView):
         serializer.save(password=encode(serializer.validated_data.__getitem__('password')))
 
 
+class CreateSuperUserView(generics.CreateAPIView):
+    """Добавление супер пользователя"""
+
+    serializer_class = UserSerializers.CreateSuperUserSerializer
+
+
 class DeleteUserByIdView(generics.DestroyAPIView):
     """Удаление пользователя по идентификации"""
 

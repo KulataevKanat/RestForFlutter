@@ -88,6 +88,9 @@ urlpatterns = [
     path("user/registration/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(UserViews.UserRegistrationView)).as_view()),
+    path("user/create_super_user/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(UserViews.CreateSuperUserView)).as_view()),
     path("user/delete_user_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(UserViews.DeleteUserByIdView)).as_view()),

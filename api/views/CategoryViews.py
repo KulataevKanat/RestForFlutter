@@ -23,6 +23,10 @@ class DeleteCategoryByIdView(generics.DestroyAPIView):
 
     queryset = Category.objects.all()
 
+
+class DeleteAllCategoriesView(generics.DestroyAPIView):
+    """Удаление всех категорий"""
+
     def get_object(self):
         try:
             return Category.objects.all()

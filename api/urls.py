@@ -17,6 +17,9 @@ urlpatterns = [
     path("category/delete_category_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(CategoryViews.DeleteCategoryByIdView)).as_view()),
+    path("category/delete_all_categories/",
+         authentication_classes([SafeJWTAuthentication])(
+             permission_classes([AllowAny])(CategoryViews.DeleteAllCategoriesView)).as_view()),
     path("category/update_category_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([AllowAny])(CategoryViews.UpdateCategoryByIdView)).as_view()),

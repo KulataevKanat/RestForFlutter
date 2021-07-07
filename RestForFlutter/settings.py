@@ -57,15 +57,6 @@ SWAGGER_SETTINGS = {
     }
 }
 
-VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-    'image_headshot': [
-        ('full_size', 'url'),
-        ('thumbnail', 'thumbnail__100x100'),
-        ('medium_square_crop', 'crop__400x400'),
-        ('small_square_crop', 'crop__50x50')
-    ]
-}
-
 AUTH_USER_MODEL = 'api.User'
 
 REFRESH_TOKEN_SECRET = 'qwertyuiop[];lkjhhgfdsaZXCVBNM,./'
@@ -124,10 +115,14 @@ WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dekstbl7rk8r5v',  # dekstbl7rk8r5v,
-        'USER': 'ghzsvpqtubyshe',  # ghzsvpqtubyshe,
-        'PASSWORD': 'bec61b402f12c993472defd58fcc1b9891f691e99ea1e1d2c84c71d9d29c6569',  # bec61b402f12c993472defd58fcc1b9891f691e99ea1e1d2c84c71d9d29c6569,
-        'HOST': 'ec2-63-34-97-163.eu-west-1.compute.amazonaws.com',  # ec2-63-34-97-163.eu-west-1.compute.amazonaws.com,
+        'NAME': 'dd3ag16qt89n21',
+        # dd3ag16qt89n21
+        'USER': 'qhxdtyqwmpejer',
+        # qhxdtyqwmpejer
+        'PASSWORD': '4307d8a03c66c5cf83d26bcd96f8e7a3aff944901c5552874c55c337eae601d5',
+        # 4307d8a03c66c5cf83d26bcd96f8e7a3aff944901c5552874c55c337eae601d5
+        'HOST': 'ec2-54-228-174-49.eu-west-1.compute.amazonaws.com',
+        # ec2-54-228-174-49.eu-west-1.compute.amazonaws.com
         'PORT': '5432',
 
         'applications': [

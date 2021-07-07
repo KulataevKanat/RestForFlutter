@@ -16,9 +16,6 @@ class User(BaseModel, AbstractUser):
 
     REQUIRED_FIELDS = ['groups_id', 'email']
 
-    def __str__(self):
-        return self.username.__str__()
-
     def get_full_name(self):
         return '%s %s' % (self.first_name, self.last_name)
 
@@ -33,7 +30,7 @@ class User(BaseModel, AbstractUser):
 
 class Image(BaseModel):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True)
     image = VersatileImageField(
         'Image',
         upload_to='images/',

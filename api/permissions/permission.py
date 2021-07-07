@@ -33,9 +33,6 @@ class ROLE_ADMIN(permissions.BasePermission):
         has_group_permission = _has_group_permission(request.user, self.required_groups)
         return request.user and has_group_permission
 
-    def has_object_permission(self, request, view, obj):
-        return obj.user.__eq__(request.user)
-
 
 class ROLE_USER(permissions.BasePermission):
     required_groups = ['user']
@@ -44,9 +41,6 @@ class ROLE_USER(permissions.BasePermission):
         has_group_permission = _has_group_permission(request.user, self.required_groups)
         return request.user and has_group_permission
 
-    def has_object_permission(self, request, view, obj):
-        return obj.user.__eq__(request.user)
-
 
 class AllowAnyGroups(permissions.BasePermission):
     required_groups = ['admin', 'user']
@@ -54,9 +48,6 @@ class AllowAnyGroups(permissions.BasePermission):
     def has_permission(self, request, view):
         has_group_permission = _has_group_permission(request.user, self.required_groups)
         return request.user and has_group_permission
-
-    def has_object_permission(self, request, view, obj):
-        return obj.user.__eq__(request.user)
 
 
 class UserPermissionsObj(permissions.BasePermission):

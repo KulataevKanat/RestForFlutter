@@ -19,8 +19,6 @@ class AllImageSerializer(serializers.ModelSerializer):
 class GetImageSerializer(serializers.ModelSerializer):
     """Вывод изображений"""
 
-    image = VersatileImageFieldSerializer(sizes="image_headshot")
-
     class Meta:
         model = Image
         fields = [

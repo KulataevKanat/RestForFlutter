@@ -7,7 +7,7 @@ SECRET_KEY = 'y0s(qydzc2o(j^ah6$qa!9e#xj2hc5i7&upw16kk-0j3#5a7mh'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'restforflutter.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',

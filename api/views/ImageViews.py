@@ -1,10 +1,7 @@
-import os
-
 from rest_framework import generics, status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 
-from RestForFlutter import settings
 from api.models import Image
 from api.serializers import ImageSerializers
 
@@ -23,13 +20,12 @@ class DeleteImageByIdView(generics.DestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        image_root = settings.MEDIA_ROOT + "\\" + str(instance.image)
-        self.perform_destroy(instance, image_root)
+        self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def perform_destroy(self, instance, image_root=None):
+    def perform_destroy(self, instance):
+        instance.image.delete()
         instance.delete()
-        os.remove(image_root)
 
 
 class UpdateImageByIdView(generics.UpdateAPIView):

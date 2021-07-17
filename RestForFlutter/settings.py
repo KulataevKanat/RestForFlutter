@@ -121,8 +121,8 @@ DATABASES = {
         # frnylmppvsbbzc
         'PASSWORD': '31bfc243db21533a4f0bf68d1b65a4b834ee76807622d8a96a5066ce1a415af1',
         # 31bfc243db21533a4f0bf68d1b65a4b834ee76807622d8a96a5066ce1a415af1
-        'HOST': 'ec2-54-228-174-49.eu-west-1.compute.amazonaws.com',
-        # ec2-54-228-174-49.eu-west-1.compute.amazonaws.com
+        'HOST': 'ec2-54-220-53-223.eu-west-1.compute.amazonaws.com',
+        # ec2-54-220-53-223.eu-west-1.compute.amazonaws.com
         'PORT': '5432',
 
         'applications': [

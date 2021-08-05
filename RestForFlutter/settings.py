@@ -9,6 +9,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'restforflutter.herokuapp.com']
 
+CELERY_BROKER_URL = 'localhost'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -115,14 +117,10 @@ WSGI_APPLICATION = 'RestForFlutter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dd7t36ho6rjue8',
-        # dd7t36ho6rjue8
-        'USER': 'frnylmppvsbbzc',
-        # frnylmppvsbbzc
-        'PASSWORD': '31bfc243db21533a4f0bf68d1b65a4b834ee76807622d8a96a5066ce1a415af1',
-        # 31bfc243db21533a4f0bf68d1b65a4b834ee76807622d8a96a5066ce1a415af1
-        'HOST': 'ec2-54-220-53-223.eu-west-1.compute.amazonaws.com',
-        # ec2-54-220-53-223.eu-west-1.compute.amazonaws.com
+        'NAME': 'RestForFlutter',
+        'USER': 'password',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
         'PORT': '5432',
 
         'applications': [
@@ -132,6 +130,16 @@ DATABASES = {
     },
 
 }
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_ALWAYS_EAGER = True
 
 AUTH_PASSWORD_VALIDATORS = [
     {

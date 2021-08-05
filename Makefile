@@ -18,3 +18,9 @@ install:
 
 freeze:
 	pip freeze > win_requirements.txt
+
+celery_worker:
+	celery -A RestForFlutter worker --loglevel=info --pool=solo
+
+celery_beat:
+	celery -A RestForFlutter beat -l info

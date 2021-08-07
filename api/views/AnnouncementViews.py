@@ -1,10 +1,9 @@
+from django_filters import rest_framework as filterss
 from rest_framework import generics, filters
 
 from api.models import Announcement
-from api.serializers import AnnouncementSerializers
-from django_filters import rest_framework as filterss
-
 from api.repository import AnnouncementFilterSet
+from api.serializers import AnnouncementSerializers
 
 
 class CreateAnnouncementView(generics.CreateAPIView):
@@ -17,6 +16,12 @@ class DeleteAnnouncementByIdView(generics.DestroyAPIView):
     """Удаление объявления по идентификации"""
 
     queryset = Announcement.objects.all()
+
+    def perform_destroy(self, instance):
+        for image_instance in instance.image.all():
+            image_instance.image.delete()
+            image_instance.delete()
+            instance.delete()
 
 
 class UpdateAnnouncementByIdView(generics.UpdateAPIView):

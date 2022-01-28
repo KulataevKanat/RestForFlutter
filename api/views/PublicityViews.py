@@ -19,7 +19,7 @@ class DeletePublicityByIdView(generics.DestroyAPIView):
         for image_instance in instance.image.all():
             image_instance.image.delete()
             image_instance.delete()
-            instance.delete()
+        instance.delete()
 
 
 class UpdatePublicityByIdView(generics.UpdateAPIView):
